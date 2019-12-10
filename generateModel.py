@@ -107,15 +107,18 @@ class GenerateModel(tf.keras.Model):
         try:
             for epoch in range(n_epochs):
                 batch_no = 0
+                loss = 0
                 for keywords, contexts, sentences in batch_train_data(_BATCH_SIZE):
                     sys.stdout.write("[Seq2Seq Training] epoch = %d, line %d to %d ..." %
                                      (epoch, batch_no * _BATCH_SIZE,
                                       (batch_no + 1) * _BATCH_SIZE))
                     sys.stdout.flush()
-                    self._train_a_batch(keywords, contexts, sentences)
+                    loss = self._train_a_batch(keywords, contexts, sentences)
                     batch_no += 1
-                if epoch == 100 or epoch == 300 or epoch == 500 or epoch == 700:
+                if epoch % 50 == 0:
                     self.manager.save()
+                    with open("training_loss.txt", 'w') as f:
+                        f.write("The loss of epoch" + str(epoch) + "is:" + str(score))
             print("Training is done.")
         except KeyboardInterrupt:
             print("Training is interrupted.")
@@ -127,11 +130,6 @@ class GenerateModel(tf.keras.Model):
             [start_of_sentence() + sentence[:-1] for sentence in sentences])
         targets = self._fill_targets(sentences)
 
-        # sentences is from data_utils -->
-        # 澄潭皎镜石崔巍$ 石   ^
-        # 万壑千岩暗绿苔$	暗	^澄潭皎镜石崔巍$
-
-        # loss, learning_rate = 0
         with tf.GradientTape() as tape:
             keyword_state, context_output, final_output, final_state, context_state = self.encoder(keyword_data,
                                                                                                    context_data)
@@ -144,6 +142,7 @@ class GenerateModel(tf.keras.Model):
         variables = self.encoder.trainable_variables + self.decoder.trainable_variables
         gradients = tape.gradient(loss, variables)
         self.optimizer.apply_gradients(zip(gradients, variables))
+        return loss
 
     def loss_func(self, targets, logits):
         labels = tf.one_hot(targets, depth=len(self.char_dict))
