@@ -36,7 +36,7 @@ class GenerateModel(tf.keras.Model):
             os.mkdir(save_dir)
 
         self.checkpoint = tf.train.Checkpoint(encoder=self.encoder, decoer=self.decoder, optimizer=self.optimizer)
-        self.manager = tf.train.CheckpointManager(self.checkpoint, save_dir, max_to_keep=4)
+        self.manager = tf.train.CheckpointManager(self.checkpoint, save_dir, max_to_keep=10)
 
     def generate(self, keywords):
         if not tf.train.get_checkpoint_state(save_dir):
