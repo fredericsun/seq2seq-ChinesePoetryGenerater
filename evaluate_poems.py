@@ -6,6 +6,7 @@ from paths import data_sxhy_path
 
 import jieba
 import csv
+import json
 
 """
 evaluate generated scores based on similarity with existing poem dataset NOT Rhyme and Tone
@@ -100,7 +101,11 @@ class PoemScore:
 def get_poem_scores():
     poems = Poems()
     poem_scores = []
+    # count=0
     for p in poems:
+        # count+=1
+        # if count>100:
+        #     break
         if len(p) != 4:
             continue
         """
@@ -146,6 +151,10 @@ def main():
     generator = GenerateModel(False)
     print("Start to preprocess score")
     poem_scores = get_poem_scores()
+    with open("poem_scores.txt", "w") as f:
+        json_data = json.dumps([score.__dict__ for score in poem_scores])
+        json.dump(json_data, f)
+
     print("process score1...")
     sorted_poem_scores1 = sorted(poem_scores, key=lambda curr_poem: curr_poem.score1)
     print("process score2...")

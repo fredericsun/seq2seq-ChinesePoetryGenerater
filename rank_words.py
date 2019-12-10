@@ -10,9 +10,6 @@ import os
 import sys
 
 
-from tencent_embedding_utils.word2vec_utils import get_tencent_embedding_keyedVectors
-
-
 _stopwords_path = os.path.join(raw_dir, 'stopwords.txt')
 
 _tencent_embedding_path='../data/truncated_Tencent_AILab_ChineseEmbedding.txt'
@@ -165,13 +162,6 @@ class RankedWords(Singleton):
             for b in adjlists[a]:
                 adjlists[a][b] /= sum_w
         return adjlists
-
-    def _build_adjlists_from_tencent_embeddings(self):
-        print("[TextRank] Generating word graph ...")
-        segmenter = Segmenter()
-        poems = Poems()
-        adjlists = dict()   # 2D dict, dict[word1][word2]=prob(going from word1 to word2)
-        wv=get_tencent_embedding_keyedVectors(_tencent_embedding_path)
 
 
 
