@@ -154,7 +154,8 @@ def main():
     with open("poem_scores.txt", "w") as f:
         json_data = json.dumps([score.__dict__ for score in poem_scores])
         json.dump(json_data, f)
-
+    print("score calculation completed")
+    '''
     print("process score1...")
     sorted_poem_scores1 = sorted(poem_scores, key=lambda curr_poem: curr_poem.score1)
     print("process score2...")
@@ -177,6 +178,7 @@ def main():
             print(sentence)
         print("The score of the current poem is:" + str(score))
     print("The average score is:" + str(avg_score / num))
+    '''
 
 if __name__ == '__main__':
     main()
