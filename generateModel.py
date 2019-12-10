@@ -115,10 +115,10 @@ class GenerateModel(tf.keras.Model):
                     sys.stdout.flush()
                     loss = self._train_a_batch(keywords, contexts, sentences)
                     batch_no += 1
-                if epoch % 50 == 0:
+                if epoch % 50 == 0 and  epoch != 0:
                     self.manager.save()
                     with open("training_loss.txt", 'w') as f:
-                        f.write("The loss of epoch" + str(epoch) + "is:" + str(score))
+                        f.write("The loss of epoch" + str(epoch) + "is:" + str(loss))
             print("Training is done.")
         except KeyboardInterrupt:
             print("Training is interrupted.")
