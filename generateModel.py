@@ -105,20 +105,20 @@ class GenerateModel(tf.keras.Model):
     def train(self, n_epochs):
         print("Training RNN-based generator ...")
         try:
-            for epoch in range(n_epochs):
-                batch_no = 0
-                loss = 0
-                for keywords, contexts, sentences in batch_train_data(_BATCH_SIZE):
-                    sys.stdout.write("[Seq2Seq Training] epoch = %d, line %d to %d ..." %
-                                     (epoch, batch_no * _BATCH_SIZE,
-                                      (batch_no + 1) * _BATCH_SIZE))
-                    sys.stdout.flush()
-                    loss = self._train_a_batch(keywords, contexts, sentences)
-                    batch_no += 1
-                if epoch % 50 == 0 and  epoch != 0:
-                    self.manager.save()
-                    with open("training_loss.txt", 'w') as f:
-                        f.write("The loss of epoch" + str(epoch) + "is:" + str(loss))
+            with open("training_loss.txt", "w") as f:
+                for epoch in range(n_epochs):
+                    batch_no = 0
+                    loss = 0
+                    for keywords, contexts, sentences in batch_train_data(_BATCH_SIZE):
+                        sys.stdout.write("[Seq2Seq Training] epoch = %d, line %d to %d ..." %
+                                        (epoch, batch_no * _BATCH_SIZE,
+                                        (batch_no + 1) * _BATCH_SIZE))
+                        sys.stdout.flush()
+                        loss = self._train_a_batch(keywords, contexts, sentences)
+                        batch_no += 1
+                    if epoch % 50 == 0 and  epoch != 0:
+                        self.manager.save()
+                    f.write("The loss of epoch" + str(epoch) + "is:" + str(loss) + "\n")
             print("Training is done.")
         except KeyboardInterrupt:
             print("Training is interrupted.")
