@@ -153,7 +153,7 @@ def main():
     avg_score = 0
     num = 500
 
-    with open("scores_result_100.txt", "w") as f:
+    with open("scores_result_500.txt", "w") as f:
         for line in open(data_sxhy_path):
             listWords = line.split()
         for i in range(num):
