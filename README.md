@@ -13,7 +13,7 @@ Input: 东风 (East Wind)
 Keywords:  人(human), 今日(today), 东风(east wind), 人间(the world)  
   
 趁月春行尽愁人, (Walking alone under the moonlight in spring is depressing.)  
-今日逐今此不听. (The excuse of leaving sounds harsh today.)  
+今日逐令此不听. (The excuse of leaving sounds harsh today.)  
 莫说东风谢乡愁,  (Do not say the east wind can relive the nostalgia.)  
 忆教人间世间醒. (Look back to my life and finally come to realize the truth of the world.)
 
