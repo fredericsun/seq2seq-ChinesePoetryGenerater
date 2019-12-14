@@ -1,4 +1,4 @@
-# Classical Chinese Quatrain Generator based on the RNN encoder-decoder model
+# Classical Chinese Poetry Generator based on a RNN-based Encoder-Decoder Model
 
 A planning-based architecture is implemented based on [Wang et al. 2016](https://arxiv.org/abs/1610.09889).
 Some basic code structures are based on https://github.com/DevinZ1993/Chinese-Poetry-Generation.
