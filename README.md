@@ -1,40 +1,25 @@
-# Planning-based Poetry Generation
+# Classical Chinese Quatrain Generator based on the RNN encoder-decoder model
 
-A classical Chinese quatrain generator based on the RNN encoder-decoder framework.
-
-Here I tried to implement the planning-based architecture purposed in 
-[Wang et al. 2016](https://arxiv.org/abs/1610.09889),
-whereas technical details might be different from the original paper.
-My purpose of making this was not to refine the neural network model and give better results by myself.
-Rather, I wish to <b>provide a simple framework as said in the paper along with
-convenient data processing toolkits</b> for all those who want to experiment their
-ideas on this interesting task.
-
-By Jun 2018, this project has been refactored into Python3 using TensorFlow 1.8.
+A planning-based architecture is implemented based on [Wang et al. 2016](https://arxiv.org/abs/1610.09889).
+Some basic code structures are based on https://github.com/DevinZ1993/Chinese-Poetry-Generation.
 
 ## Code Organization
 
 ![Structure of Code](img/structure.jpg)
 
-The diagram above illustrates major dependencies in
-this codebase in terms of either data or functionalities.
-Here I tried to organize code around data,
-and make every data processing module a singleton at runtime.
-Batch processing is only done when the produced result
-is either missing or outdated.
 
 
 ## Dependencies
 
-* Python 3.6.5
+* Python 3.7
 
-* [Numpy 1.14.4](http://www.numpy.org/)
+* [Numpy](http://www.numpy.org/)
 
-* [TensorFlow 1.8](https://www.tensorflow.org/)
+* [TensorFlow2](https://www.tensorflow.org/)
 
-* [Jieba 0.39](https://github.com/fxsjy/jieba)
+* [Jieba](https://github.com/fxsjy/jieba)
 
-* [Gensim 2.0.0](https://radimrehurek.com/gensim/)
+* [Gensim](https://radimrehurek.com/gensim/)
 
 
 ## Data Processing
@@ -68,32 +53,24 @@ To erase all trained models, run:
     ./train.py --clean
 
 
-As it turned out, the attention-based generator model after refactor
-was really hard to train well.
-From my side, the average loss will typically stuck at ~5.6
-and won't go down any more.
-There should be considerable space to improve it.
+The average loss will converge at ~3.8.
 
-## Run Tests
+## Generating
 
 Type the following command:
 
     ./main.py
 
-Then each time you type in a hint text in Chinese,
-it should return a kind of gibberish poem.
-It's up to you to decide how to improve the models and training methods
-to make them work better.
+Please type in a hint text in Chinese, it should return a quatrain poem.
+
 
 ## Improve It
 
-* To add data processing tools, consider adding dependency configs into
-\_\_dependency\_dict in [paths.py](./paths.py).
-It helps you to automatically update processed data when it goes stale.
+* Apply a new method to better tuning rhythm and tone. Our current implementation is to penalize the probability of selecting character that is out of the rhythm in the generating process.
 
 * To improve the planning model,
-please refine the planner class in [plan.py](./plan.py).
+Please refine the planner class in [plan.py](./plan.py).
 
 * To improve  the generation model,
-please refine the generator class in [generate.py](./generate.py).
+Please refine the generator class in [generate.py](./generate.py).
 
