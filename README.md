@@ -6,7 +6,7 @@ The preprocess code are adapted from https://github.com/DevinZ1993/Chinese-Poetr
 
 ## Code Organization
 
-![Structure of Code](img/structure.jpg)
+![Structure of Code](img/class_structure.jpg)
 
 ## Example Result
 
