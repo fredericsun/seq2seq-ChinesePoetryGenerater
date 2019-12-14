@@ -1,6 +1,6 @@
 # Classical Chinese Poetry Generator based on a RNN-based Encoder-Decoder Model
 
-A planning-based architecture is implemented based on [Wang et al. 2016](https://arxiv.org/abs/1610.09889).
+A planning-based architecture is implemented based on [Wang et al. 2016](https://arxiv.org/abs/1610.09889).  
 The preprocess code are adapted from https://github.com/DevinZ1993/Chinese-Poetry-Generation.
 
 ## Code Organization
@@ -8,6 +8,8 @@ The preprocess code are adapted from https://github.com/DevinZ1993/Chinese-Poetr
 ![Structure of Code](img/structure.jpg)
 
 ## Example Result
+
+Please aware that the model files are not include in this repo as its large size. Please train the model first when you want to test the reuslt.  
 
 Input: 东风 (East Wind)  
 Keywords:  人(human), 今日(today), 东风(east wind), 人间(the world)  
@@ -36,23 +38,17 @@ Run the following command to generate training data from source text data:
 
     ./data_utils.py
 
-Depending on your hardware, this can take you a cup of tea or over one hour.
-The keyword extraction is based on the TextRank algorithm,
-which can take a long time to converge.
-
 ## Training
 
-The poem planner was based on Gensim's Word2Vec module.
-To train it, simply run:
+Train the planner:
 
     ./train.py -p
 
-The poem generator was implemented as an enc-dec model with attention mechanism.
-To train it, type the following command:
+Train the generator:
 
     ./train.py -g
 
-You can also choose to train the both models altogether by running:
+Train the both models altogether:
 
     ./train.py -a
 
@@ -65,11 +61,10 @@ The average loss will converge at ~3.8.
 
 ## Generating
 
-Type the following command:
+Please type in a hint text in Chinese, it should return a quatrain poem.
 
     ./main.py
 
-Please type in a hint text in Chinese, it should return a quatrain poem.
 
 
 ## Possible Future Work
