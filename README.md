@@ -9,7 +9,7 @@ The preprocess code are adapted from https://github.com/DevinZ1993/Chinese-Poetr
 
 ## Example Result
 
-Please aware that the model files are not include in this repo as its large size. Please train the model first when you want to test the reuslt.  
+Please aware that the model files are not included in this repo as its size exceeds the limit. Please train the model first if you want to test the reuslt.  
 
 Input: 东风 (East Wind)  
 Keywords:  人(human), 今日(today), 东风(east wind), 人间(the world)  
