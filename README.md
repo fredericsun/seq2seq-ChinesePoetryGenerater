@@ -64,13 +64,9 @@ Type the following command:
 Please type in a hint text in Chinese, it should return a quatrain poem.
 
 
-## Improve It
+## Possible Future Work
 
 * Apply a new method to better tuning rhythm and tone. Our current implementation is to penalize the probability of selecting character that is out of the rhythm in the generating process.
+* Implement BERT instead of bidirectional RNN.
 
-* To improve the planning model,
-Please refine the planner class in [plan.py](./plan.py).
-
-* To improve  the generation model,
-Please refine the generator class in [generate.py](./generate.py).
 
